@@ -3,16 +3,23 @@ import './MovieCards.css';
 function MovieCards({ movie }) {
     const imageUrl = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-        : 'https://via.placeholder.com/500x750/1e2434/8b5cf6?text=No+Image';
+        : 'https://placeholder.vn/placeholder/500x750?bg=1e2434&color=ffffff&text=No+Poster';
 
     const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
     const year = movie.release_date ? new Date(movie.release_date).getFullYear() : '';
+    const language = movie.original_language ? movie.original_language.toUpperCase() : '';
 
     return (
         <div className="movie-card">
-            <img src={imageUrl} alt={movie.title} className="movie-poster" />
+            <div className='movie-poster-wrapper'>
+                <img src={imageUrl} alt={movie.title} className="movie-poster" />
+                <div className='movie-overview-container'>
+                    <p className='movie-overview'>{movie.overview || 'No overview available.'}</p>
+                </div>
+            </div>
             <div className="movie-info">
                 <h3 className="movie-title">{movie.title}</h3>
+                <p className="movie-language">{language}</p>
                 <p className="movie-year">{year}</p>
                 <div className="movie-rating">
                     <svg

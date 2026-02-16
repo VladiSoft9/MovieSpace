@@ -40,6 +40,12 @@ function App() {
     <div className="app">
       <SearchBar onSearch={fetchMovies} />
       <MovieGrid movies={movies} />
+
+      <footer>
+        <p>© {new Date().getFullYear()} MovieSpace - Created by VladiSoft</p>
+        <p>Made it possible by: <a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer" className='link'>The Movie Database (TMDb)</a>.</p>
+      </footer>
+
     </div>
   )
 }

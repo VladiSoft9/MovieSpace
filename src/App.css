@@ -4,3 +4,28 @@
   flex-direction: column;
 }
 
+footer {
+  margin-top: auto;
+  padding: var(--spacing-xl) var(--spacing-md);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-secondary);
+}
+
+footer p {
+  margin: 0;
+}
+
+.link {
+  color: var(--color-primary-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
