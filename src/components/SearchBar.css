@@ -91,6 +91,10 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .search-container {
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+
     .app-title {
         font-size: 2.5rem;
     }
@@ -98,10 +102,29 @@
     .app-subtitle {
         font-size: 1rem;
     }
+}
+
+@media (max-width: 480px) {
+    .app-title {
+        font-size: 2rem;
+    }
 
     .search-input-wrapper {
         flex-direction: column;
         gap: var(--spacing-sm);
+        padding: var(--spacing-sm);
+    }
+    
+    .search-icon {
+        display: block;
+        align-self: flex-start;
+        margin-left: var(--spacing-xs);
+    }
+
+    .search-input {
+        width: 100%;
+        text-align: center;
+        padding: var(--spacing-xs);
     }
 
     .search-button {

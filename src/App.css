@@ -14,10 +14,6 @@ footer {
   background: var(--color-bg-secondary);
 }
 
-footer p {
-  margin: 0;
-}
-
 .link {
   color: var(--color-primary-light);
   text-decoration: none;
@@ -28,4 +24,10 @@ footer p {
 .link:hover {
   color: var(--color-primary);
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .app-footer {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
 }

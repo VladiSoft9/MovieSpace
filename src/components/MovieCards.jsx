@@ -1,4 +1,5 @@
 import './MovieCards.css';
+import { useRef } from 'react';
 
 function MovieCards({ movie }) {
     const imageUrl = movie.poster_path
@@ -9,12 +10,18 @@ function MovieCards({ movie }) {
     const year = movie.release_date ? new Date(movie.release_date).getFullYear() : '';
     const language = movie.original_language ? movie.original_language.toUpperCase() : '';
 
+    const overviewRef = useRef(null);
+
+    function increaseOverviewHeight() {
+        overviewRef.current.style.webkitLineClamp = '20';
+    }
+
     return (
         <div className="movie-card">
             <div className='movie-poster-wrapper'>
                 <img src={imageUrl} alt={movie.title} className="movie-poster" />
                 <div className='movie-overview-container'>
-                    <p className='movie-overview'>{movie.overview || 'No overview available.'}</p>
+                    <p className='movie-overview' ref={overviewRef} onClick={increaseOverviewHeight}>{movie.overview || 'No overview available.'}</p>
                 </div>
             </div>
             <div className="movie-info">
