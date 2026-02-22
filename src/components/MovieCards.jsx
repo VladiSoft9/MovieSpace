@@ -1,7 +1,7 @@
 import './MovieCards.css';
 import { useRef } from 'react';
 
-function MovieCards({ movie }) {
+function MovieCards({ movie, favorites, updateFavorites }) {
     const imageUrl = movie.poster_path
         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
         : 'https://placeholder.vn/placeholder/500x750?bg=1e2434&color=ffffff&text=No+Poster';
@@ -20,6 +20,13 @@ function MovieCards({ movie }) {
         <div className="movie-card">
             <div className='movie-poster-wrapper'>
                 <img src={imageUrl} alt={movie.title} className="movie-poster" />
+                <button
+                    className={`favorite-btn ${
+                        favorites.some((fav) => fav.id === movie.id)
+                            ? "active"
+                            : ""
+                    }`}onClick={() => updateFavorites(movie)}>❤️
+                </button>
                 <div className='movie-overview-container'>
                     <p className='movie-overview' ref={overviewRef} onClick={increaseOverviewHeight}>{movie.overview || 'No overview available.'}</p>
                 </div>

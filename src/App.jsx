@@ -11,6 +11,10 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 function App() {
 
   const [movies, setMovies] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    const storedMovies = localStorage.getItem('favorites');
+    return storedMovies ? JSON.parse(storedMovies) : [];
+  });
   
   async function fetchMovies(query) {
     // If Query is provided, search for movies, otherwise get popular movies
@@ -36,10 +40,27 @@ function App() {
     fetchMovies();
   }, []);
 
+  function updateFavorites(movie) {
+    setFavorites(prevFavorites => {
+      const isSaved = prevFavorites.some((fav) => fav.id === movie.id)
+        if(isSaved){
+          return prevFavorites.filter((fav) => fav.id !== movie.id);
+        }
+        else{
+          return [...prevFavorites,movie];
+        }
+    });
+    console.log(favorites);
+  }
+
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
+
   return (
     <div className="app">
       <SearchBar onSearch={fetchMovies} />
-      <MovieGrid movies={movies} />
+      <MovieGrid movies={movies} favorites={favorites} updateFavorites={updateFavorites} />
 
       <footer>
         <p>© {new Date().getFullYear()} MovieSpace - Created by VladiSoft</p>
