@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import './SearchBar.css';
 
-function SearchBar({onSearch}) {
+function SearchBar({onSearch, showFavorites, setShowFavorites, favoritesCount}) {
     const [query, setQuery] = useState('');
 
     const handleSubmit = (e) => {
@@ -46,6 +46,9 @@ function SearchBar({onSearch}) {
           </button>
         </div>
       </form>
+      <p className="favorites-toggle" onClick={() => setShowFavorites(!showFavorites)}>
+        {showFavorites ? "Show All Movies" : `Show My Favorite Movies (${favoritesCount})`}
+      </p>
     </div>
   );
 }

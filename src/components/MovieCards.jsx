@@ -16,9 +16,13 @@ function MovieCards({ movie, favorites, updateFavorites }) {
         overviewRef.current.style.webkitLineClamp = '20';
     }
 
+    function resetOverviewHeight() {
+        overviewRef.current.style.webkitLineClamp = '4';
+    }
+
     return (
         <div className="movie-card">
-            <div className='movie-poster-wrapper'>
+            <div className='movie-poster-wrapper' onClick={increaseOverviewHeight} onMouseLeave={resetOverviewHeight}>
                 <img src={imageUrl} alt={movie.title} className="movie-poster" />
                 <button
                     className={`favorite-btn ${
@@ -28,7 +32,7 @@ function MovieCards({ movie, favorites, updateFavorites }) {
                     }`}onClick={() => updateFavorites(movie)}>❤️
                 </button>
                 <div className='movie-overview-container'>
-                    <p className='movie-overview' ref={overviewRef} onClick={increaseOverviewHeight}>{movie.overview || 'No overview available.'}</p>
+                    <p className='movie-overview' ref={overviewRef}>{movie.overview || 'No overview available.'}</p>
                 </div>
             </div>
             <div className="movie-info">

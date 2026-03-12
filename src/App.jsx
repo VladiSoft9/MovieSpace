@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import SearchBar from './components/SearchBar'
 import MovieGrid from './components/MovieGrid';
+import FavoriteGrid from './components/FavoriteGrid';
 
 
 const API_KEY = '8265bd1679663a7ea12ac168da84d2e8'; // Demo API key
@@ -15,6 +16,7 @@ function App() {
     const storedMovies = localStorage.getItem('favorites');
     return storedMovies ? JSON.parse(storedMovies) : [];
   });
+  const [showFavorites, setShowFavorites] = useState(false);
   
   async function fetchMovies(query) {
     // If Query is provided, search for movies, otherwise get popular movies
@@ -59,8 +61,14 @@ function App() {
 
   return (
     <div className="app">
-      <SearchBar onSearch={fetchMovies} />
-      <MovieGrid movies={movies} favorites={favorites} updateFavorites={updateFavorites} />
+      <SearchBar onSearch={fetchMovies} showFavorites={showFavorites} setShowFavorites={setShowFavorites} favoritesCount={favorites.length} />
+      {showFavorites ? (
+        <FavoriteGrid favorites={favorites} updateFavorites={updateFavorites} favoritesCount={favorites.length} />
+      ) 
+      : 
+      (
+        <MovieGrid movies={movies} favorites={favorites} updateFavorites={updateFavorites} />
+      )}
 
       <footer>
         <p>© {new Date().getFullYear()} MovieSpace - Created by VladiSoft</p>

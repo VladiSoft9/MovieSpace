@@ -16,6 +16,7 @@
 
 .movie-poster-wrapper {
     position: relative;
+    overflow: hidden;
 }
 
 .favorite-btn {
@@ -26,7 +27,7 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.3;
 }
 
 .favorite-btn.active {
@@ -39,7 +40,10 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(30, 36, 52, 0.9);
+    background: linear-gradient(to top,
+            rgba(10, 14, 23, 0.95) 0%,
+            rgba(10, 14, 23, 0.7) 50%,
+            rgba(10, 14, 23, 0) 100%);
     color: #fff;
     padding: var(--spacing-sm);
     max-height: 100%;
@@ -68,7 +72,7 @@
     transition: transform var(--transition-slow);
 }
 
-.movie-card:hover .movie-poster .movie-overview-container {
+.movie-card:hover .movie-poster, .movie-card:hover .movie-overview-container {
     transform: scale(1.05);
 }
 

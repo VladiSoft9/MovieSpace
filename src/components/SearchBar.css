@@ -18,6 +18,20 @@
     font-weight: 400;
 }
 
+.favorites-toggle {
+    display: inline-block;
+    margin-top: var(--spacing-md);
+    color: var(--color-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+.favorites-toggle:hover {
+    color: var(--color-primary-light);
+    text-decoration: underline;
+}
+
 .search-form {
     max-width: 700px;
     margin: 0 auto;
