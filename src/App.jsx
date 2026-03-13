@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react';
 import './App.css'
 import SearchBar from './components/SearchBar'
 import MovieGrid from './components/MovieGrid';
@@ -17,6 +17,7 @@ function App() {
     return storedMovies ? JSON.parse(storedMovies) : [];
   });
   const [showFavorites, setShowFavorites] = useState(false);
+  const [sortOrder, setSortOrder] = useState('title-asc');
   
   async function fetchMovies(query) {
     // If Query is provided, search for movies, otherwise get popular movies
@@ -58,6 +59,27 @@ function App() {
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
+
+  function sortHelper(array, option) {
+    return [...array].sort((a, b) => {
+      switch (option) {
+        case 'title-asc':
+          return a.title.localeCompare(b.title);
+        case 'title-desc':
+          return b.title.localeCompare(a.title);
+        case 'release-asc':
+          return new Date(a.release_date) - new Date(b.release_date);
+        case 'release-desc':
+          return new Date(b.release_date) - new Date(a.release_date);
+        default:
+          return 0;
+      }
+    });
+  }
+
+  const sortedMovies = useMemo(() => sortHelper(movies, sortOrder), [movies, sortOrder]);
+  const sortedFavorites = useMemo(() => sortHelper(favorites, sortOrder), [favorites, sortOrder]);
+
 
   return (
     <div className="app">
