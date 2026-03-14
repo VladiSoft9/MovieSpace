@@ -83,13 +83,13 @@ function App() {
 
   return (
     <div className="app">
-      <SearchBar onSearch={fetchMovies} showFavorites={showFavorites} setShowFavorites={setShowFavorites} favoritesCount={favorites.length} />
+      <SearchBar onSearch={fetchMovies} showFavorites={showFavorites} setShowFavorites={setShowFavorites} favoritesCount={favorites.length} sortOrder={sortOrder} setSortOrder={setSortOrder} />
       {showFavorites ? (
-        <FavoriteGrid favorites={favorites} updateFavorites={updateFavorites} favoritesCount={favorites.length} />
+        <FavoriteGrid favorites={sortedFavorites} updateFavorites={updateFavorites} favoritesCount={favorites.length} />
       ) 
       : 
       (
-        <MovieGrid movies={movies} favorites={favorites} updateFavorites={updateFavorites} />
+        <MovieGrid movies={sortedMovies} favorites={favorites} updateFavorites={updateFavorites} />
       )}
 
       <footer>

@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import './SearchBar.css';
 
-function SearchBar({onSearch, showFavorites, setShowFavorites, favoritesCount}) {
+function SearchBar({onSearch, showFavorites, setShowFavorites, favoritesCount, sortOrder, setSortOrder}) {
     const [query, setQuery] = useState('');
 
     const handleSubmit = (e) => {
@@ -49,6 +49,15 @@ function SearchBar({onSearch, showFavorites, setShowFavorites, favoritesCount}) 
       <p className="favorites-toggle" onClick={() => setShowFavorites(!showFavorites)}>
         {showFavorites ? "Show All Movies" : `Show My Favorite Movies (${favoritesCount})`}
       </p>
+      <div className="sort-wrapper">
+        <label htmlFor="sort-select">Sort By:</label>
+        <select className='sort-select' value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+          <option value="title-asc">Title (A-Z)</option>
+          <option value="title-desc">Title (Z-A)</option>
+          <option value="release-asc">Release Date (Oldest First)</option>
+          <option value="release-desc">Release Date (Newest First)</option>
+        </select>
+      </div>
     </div>
   );
 }
