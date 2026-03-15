@@ -23,16 +23,24 @@
 
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+
+@media (min-width: 2200px) {
     .favorite-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(650px, 1fr));
+        gap: var(--spacing-xl);
+    }
+}
+
+@media (max-width: 1400px) {
+    .favorite-grid {
+        grid-template-columns: repeat(3, 1fr);
         gap: var(--spacing-md);
     }
 }
 
 @media (max-width: 768px) {
     .favorite-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: var(--spacing-sm);
         padding: var(--spacing-sm);
     }

@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import './App.css'
-import SearchBar from './components/SearchBar'
-import MovieGrid from './components/MovieGrid';
-import FavoriteGrid from './components/FavoriteGrid';
+import SearchBar from '../components/SearchBar'
+import MovieGrid from '../components/MovieGrid';
+import FavoriteGrid from '../components/FavoriteGrid';
 
 
 const API_KEY = '8265bd1679663a7ea12ac168da84d2e8'; // Demo API key
