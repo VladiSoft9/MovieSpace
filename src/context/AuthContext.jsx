@@ -11,6 +11,7 @@ function AuthProvider({ children }) {
         const fetchSession = async () => {
             const { data: { session } } = await supabase.auth.getSession();
             setSession(session);
+            console.log("Current session:", session);
             setLoading(false);
         };
         fetchSession();
@@ -20,7 +21,7 @@ function AuthProvider({ children }) {
         });
 
         return () => {
-            authListener.unsubscribe();
+            authListener.subscription.unsubscribe();
         };
     }, []);
 
@@ -41,7 +42,7 @@ function AuthProvider({ children }) {
 
 function useAuth() {
     const context = useContext(AuthContext);
-    if (context === undefined) {
+    if (!context) {
         throw new Error("useAuth must be used within an AuthProvider");
     }
     return context;

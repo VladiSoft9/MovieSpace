@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import './SearchBar.css';
+import { useAuth } from '../context/AuthContext.jsx';
 
 function SearchBar({onSearch, showFavorites, setShowFavorites, favoritesCount, sortOrder, setSortOrder}) {
     const [query, setQuery] = useState('');
@@ -10,6 +11,17 @@ function SearchBar({onSearch, showFavorites, setShowFavorites, favoritesCount, s
             onSearch(query);
         }
     };
+
+    const { session, loading, signOut } = useAuth();
+
+    const handleSignOut = async () => {
+        try {
+            await signOut();
+        } catch (error) {
+            console.error('Error signing out:', error);
+        }
+    };
+
 
     return (     
     
@@ -57,6 +69,11 @@ function SearchBar({onSearch, showFavorites, setShowFavorites, favoritesCount, s
           <option value="release-asc">Release Date (Oldest First)</option>
           <option value="release-desc">Release Date (Newest First)</option>
         </select>
+      </div>
+      <div>
+        <button onClick={handleSignOut} className='SignOut-btn' disabled={loading}>
+          {loading ? 'Signing Out...' : 'Sign Out'}
+        </button>
       </div>
     </div>
   );

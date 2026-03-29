@@ -1,4 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext.jsx';
 import './App.css'
 import SearchBar from '../components/SearchBar'
 import MovieGrid from '../components/MovieGrid';
@@ -10,7 +12,6 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 
 
 function App() {
-
   const [movies, setMovies] = useState([]);
   const [favorites, setFavorites] = useState(() => {
     const storedMovies = localStorage.getItem('favorites');
@@ -38,6 +39,15 @@ function App() {
       console.error('Error fetching movies:', error);
     }
   }
+
+  const { session, loading } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && !session) {
+      navigate('/', { replace: true });
+    }
+  }, [session, loading, navigate]);
 
   useEffect(() => {
     fetchMovies();
@@ -80,6 +90,8 @@ function App() {
   const sortedMovies = useMemo(() => sortHelper(movies, sortOrder), [movies, sortOrder]);
   const sortedFavorites = useMemo(() => sortHelper(favorites, sortOrder), [favorites, sortOrder]);
 
+  
+ if (session) {
 
   return (
     <div className="app">
@@ -99,6 +111,7 @@ function App() {
 
     </div>
   )
+  }
 }
 
 export default App
