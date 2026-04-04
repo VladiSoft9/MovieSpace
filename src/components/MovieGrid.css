@@ -14,6 +14,12 @@
     margin-top: var(--spacing-lg);
 }
 
+.error-state {
+    text-align: center;
+    font-size: 1.25rem;
+    color: var(--color-error);
+    margin-top: var(--spacing-lg);
+}
 
 /* Responsive Design */
 

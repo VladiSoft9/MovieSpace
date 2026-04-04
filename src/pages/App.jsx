@@ -5,6 +5,7 @@ import './App.css'
 import SearchBar from '../components/SearchBar'
 import MovieGrid from '../components/MovieGrid';
 import FavoriteGrid from '../components/FavoriteGrid';
+import UserBar from '../components/UserBar';
 
 
 const API_KEY = '8265bd1679663a7ea12ac168da84d2e8'; // Demo API key
@@ -17,6 +18,7 @@ function App() {
     const storedMovies = localStorage.getItem('favorites');
     return storedMovies ? JSON.parse(storedMovies) : [];
   });
+  const [fetchError, setFetchError] = useState(null);
   const [showFavorites, setShowFavorites] = useState(false);
   const [sortOrder, setSortOrder] = useState('title-asc');
   
@@ -33,10 +35,10 @@ function App() {
       }
       const data = await response.json();
       setMovies(data.results);
-      console.log(data.results);
     }
     catch (error) {
       console.error('Error fetching movies:', error);
+      setFetchError('Failed to load movies. Please try again later.');
     }
   }
 
@@ -95,13 +97,14 @@ function App() {
 
   return (
     <div className="app">
+      <UserBar />
       <SearchBar onSearch={fetchMovies} showFavorites={showFavorites} setShowFavorites={setShowFavorites} favoritesCount={favorites.length} sortOrder={sortOrder} setSortOrder={setSortOrder} />
       {showFavorites ? (
         <FavoriteGrid favorites={sortedFavorites} updateFavorites={updateFavorites} favoritesCount={favorites.length} />
       ) 
       : 
       (
-        <MovieGrid movies={sortedMovies} favorites={favorites} updateFavorites={updateFavorites} />
+        <MovieGrid movies={sortedMovies} favorites={favorites} updateFavorites={updateFavorites} fetchError={fetchError} />
       )}
 
       <footer>

@@ -26,7 +26,7 @@ function Home() {
     <div className="home">
         <div className="home-content">
             <h1>Welcome!</h1>
-            <p>This is the Authentication page of our application.</p>
+            <p>To be able to enjoy our MovieSpace application, please sign in or create an account.</p>
             <div className="login-form">
               {isSignUp ? (
                 <SignUp onToggle={toggleForm} />
