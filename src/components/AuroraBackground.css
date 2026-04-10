@@ -1,0 +1,59 @@
+.aurora-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.aurora-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.aurora-glow-primary {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(
+    ellipse 150% 150% at 50% 0%,
+    rgba(88, 28, 135, 0.6),
+    rgba(63, 81, 181, 0.4),
+    rgba(33, 150, 243, 0.2),
+    transparent 70%
+  );
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.aurora-glow-secondary {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(255, 87, 34, 0.4),
+    rgba(244, 67, 54, 0.3),
+    rgba(233, 30, 99, 0.3),
+    transparent
+  );
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+.aurora-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
