@@ -47,7 +47,7 @@ function App() {
 
   useEffect(() => {
     if (!loading && !session) {
-      navigate('/', { replace: true });
+      navigate('/MovieSpace/', { replace: true });
     }
   }, [session, loading, navigate]);
 

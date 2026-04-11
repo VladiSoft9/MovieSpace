@@ -12,7 +12,7 @@ function Home() {
 
   useEffect(() => {
     if (!loading && session) {
-      navigate('/app', { replace: true });
+      navigate('/MovieSpace/app', { replace: true });
     }
   }, [session, loading, navigate]);
   
