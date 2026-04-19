@@ -1,19 +1,27 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import './SearchBar.css';
+import { useRef } from 'react';
 
-function SearchBar({onSearch, showFavorites, setShowFavorites, favoritesCount, sortOrder, setSortOrder}) {
-    const [query, setQuery] = useState('');
+function SearchBar({ onSearch, showFavorites, setShowFavorites, favoritesCount, sortOrder, setSortOrder }) {
+  const [query, setQuery] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if(query.trim()) {
-            onSearch(query);
-        }
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (query.trim()) {
+      onSearch(query);
+    }
+    setQuery('');
+  };
+
+  const inputRef = useRef(null);
+
+  function focusInput() {
+    inputRef.current.focus();
+  }
 
 
-    return (     
-    
+  return (
+
     <div className="search-container">
       <h1 className="app-title">
         <span className="gradient-text">MovieSpace</span>
@@ -24,6 +32,7 @@ function SearchBar({onSearch, showFavorites, setShowFavorites, favoritesCount, s
         <div className="search-input-wrapper">
           <svg
             className="search-icon"
+            onClick={focusInput}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -38,6 +47,7 @@ function SearchBar({onSearch, showFavorites, setShowFavorites, favoritesCount, s
           <input
             type="text"
             className="search-input"
+            ref={inputRef}
             placeholder="Search for movies..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}

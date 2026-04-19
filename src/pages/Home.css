@@ -20,6 +20,7 @@
   font-size: 3rem;
   margin-bottom: var(--spacing-md);
 }
+
 .home-content p {
   font-size: 1.25rem;
   margin-bottom: var(--spacing-lg);
@@ -60,7 +61,8 @@
 
 
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input.password-input {
   width: 100%;
   padding: var(--spacing-sm);
   border: 1px solid var(--color-border);
@@ -70,7 +72,8 @@ input[type="password"] {
 }
 
 input[type="email"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+input.password-input:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.4);
   outline: none;
@@ -78,7 +81,8 @@ input[type="password"]:focus {
 
 
 input[type="email"]:disabled,
-input[type="password"]:disabled {
+input[type="password"]:disabled,
+input.password-input:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -138,4 +142,33 @@ input[type="password"]:disabled {
   border-radius: var(--radius-sm);
   margin-bottom: var(--spacing-md);
   font-size: 0.95rem;
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  padding-right: 2.5rem;
+  /* Make room for the eye icon */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  height: 100%;
+}
+
+.toggle-password:hover {
+  color: var(--color-primary);
 }

@@ -171,11 +171,11 @@ label {
         gap: var(--spacing-sm);
         padding: var(--spacing-sm);
     }
-    
+
     .search-icon {
         display: block;
-        align-self: flex-start;
-        margin-left: var(--spacing-xs);
+        align-self: center;
+        margin-left: 0;
     }
 
     .search-input {
